@@ -1,0 +1,59 @@
+<div class="remote-data-table-box">
+	
+	<div style="text-align: right">
+		<div>
+			<button type="button" class="btn btn-default btn-sm" 
+				ng-click="reload()">
+				<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-default btn-sm column-selector-button" 
+				ng-click="columnSelectorOpen = !columnSelectorOpen" ng-class="{active: columnSelectorOpen}">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div style="position:relative">
+			<div class="column-selector-box" ng-show="columnSelectorOpen" style="position: absolute">
+				<div ng-show="options.indexColumn">
+					<input type="checkbox" ng-model="indexColumnVisible"/>
+					<span style="font-style: italic">index</span>
+				</div>
+				<div ng-repeat="column in columns">
+					<input type="checkbox" ng-model="column.visibleState"/>
+					<span ng-bind="column.displayName"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="data-table-box">
+		<table class="table table-condensed table-hover table-striped table-bordered remote-data-table">
+			<thead>
+				<tr>
+					<th ng-hide="!indexColumnVisible" style="width: 50px;">#</th>
+					<th ng-repeat="column in columns" ng-if="column.visibleState" ng-click="sortColumn(column)" ng-class="{'sortable-column': column.sortable}"
+						ng-style="{width: column.width}">
+						<span ng-if="!column.headerTemplate" ng-bind="column.displayName"></span>
+						<span ng-if="column.headerTemplate" remote-data-table-header-template></span>
+						<span class="column-sort-icon" ng-if="column.sortable" ng-show="column.property === sortBy">
+							<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" ng-show="!sortAsc"></span>
+							<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" ng-show="sortAsc"></span>
+						</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items" ng-style="{ 'background-color': getRowColor(item, $index) }">
+					<td ng-show="indexColumnVisible" ng-bind="getRowIndex($index)"></td>
+					<td ng-repeat="column in columns" ng-if="column.visibleState">
+						<div>
+							<span ng-if="!column.cellTemplate" ng-bind="item[column.property]"></span>
+							<span ng-if="column.cellTemplate" remote-data-table-cell-template></span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<remote-data-table-pagination ng-if="options.pagination"/>
+<div>

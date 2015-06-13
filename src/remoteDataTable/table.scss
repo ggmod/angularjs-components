@@ -1,0 +1,61 @@
+.remote-data-table-box {
+
+	.remote-data-table {
+		box-shadow: 0 0 15px rgb(236, 236, 236);
+		margin-top: 10px;
+	}
+
+	.column-selector-box {
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid lightgray;
+		box-shadow: 0 0 10px lightgray;
+		border-radius: 5px;
+		background-color: white;
+		position: absolute;
+		right: 0px;
+		top: 1px;
+		text-align: left;
+		z-index: 1;
+	}
+	.column-selector-button {
+		outline: none !important;
+	}
+	
+	.sortable-column {
+		cursor: pointer;
+	}
+
+	.pagination-range {
+		margin-top: 10px;
+  		display: inline-block;
+	}
+	.pagination-box {
+		text-align: center;
+		position: relative;
+		margin-bottom: 10px;
+	}
+	.pagination-controllers {
+		// float: right;
+		position: absolute;
+		right: 0px;
+	}
+	.pagination-input-box {
+		border: 1px solid #E0E0E0;
+		display: inline-block;
+		padding: 1px;
+		border-radius: 3px;
+		background-color: rgb(247, 247, 247);
+	}
+	.pagination-input {
+		width: 60px;
+		display: inline-block;
+		padding-top: 4px;
+		height: 31px;
+	}
+
+	// bootstrap override:
+	.table-hover > tbody > tr:hover {
+ 		background-color: #ECECEC;
+	}
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="commonsDemo">
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>angular commons demo</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../build/angular-commons.css"></link>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script type="text/javascript" src="../build/angular-commons.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+  </head>
+  <body style="font-size: 13px; padding: 15px">
+   		
+   		<div ng-controller="TaskCtrl">
+	    	<div style="margin: auto; max-width: 1000px">
+		    	<remote-data-table id="tasks-grid"
+            items="tasks"
+		    		item-count="taskCount.count"
+            columns="taskColumns"
+            reload-remote-data="reloadTasks"
+		    		>
+		    	</remote-data-table>
+		    </div>
+    	</div>
+
+      <div ng-controller="CarsCtrl" style="margin-top: 50px">
+        <div style="margin: auto; max-width: 600px">
+          <div>
+            <span>Year limit: </span>
+            <input type="number" ng-model="yearLimit">
+          </div>
+          <remote-data-table
+            items="cars"
+            item-count="carCount.count"
+            columns="carColumns"
+            options="carOptions"
+            reload-remote-data="reloadCars"
+            >
+          </remote-data-table>
+        </div>
+      </div>
+
+  </body>
+</html>

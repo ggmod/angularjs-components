@@ -1,0 +1,22 @@
+<div class="pagination-box">
+	<span class="pagination-range">
+		<span ng-bind="pagination.offset + 1"></span>
+		-
+		<span ng-bind="[pagination.offset + pagination.limit , itemCount] | min"></span>
+	</span>
+	<span class="pagination-controllers">
+		<span class="pagination-input-box" style="margin-right: 30px">
+			<span style="padding-left: 3px">limit:</span>
+			<input type="number" min="1" ng-model="pagination.limit" ng-change="pageLimitChanged()" class="form-control pagination-input"/>
+		</span>
+		<button ng-disabled="pagination.offset <= 0" ng-click="pageFirst()" class="btn btn-default">&laquo;</button>
+		<button ng-disabled="pagination.offset <= 0" ng-click="pageBack()" class="btn btn-default">&lsaquo;</button>
+		<span class="pagination-input-box">
+			<input type="number" min="1" ng-model="pagination.page" ng-change="pageSelected()" class="form-control pagination-input"/>
+			<span>/</span>
+			<span ng-bind="getMaxPage()" style="padding-right: 3px"></span>
+		</span>
+		<button ng-disabled="(pagination.offset + pagination.limit) >= itemCount" ng-click="pageForward()" class="btn btn-default">&rsaquo;</button>
+		<button ng-disabled="(pagination.offset + pagination.limit) >= itemCount" ng-click="pageLast()" class="btn btn-default">&raquo;</button>
+	</span>
+</div>
