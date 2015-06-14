@@ -6,13 +6,14 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 
 		jshint: {
-			files: ['src/**/*.js'],
+			files: ['src/**/*.js', 'demo/**/*.js'],
 			options: {
 				globals: {
 					jQuery: true,
 					console: true,
 					document: true
-				}
+				},
+				force: true
 			}
 		},
 
@@ -21,12 +22,16 @@ module.exports = function(grunt) {
 				separator: '\n\n'
 			},
 			scripts: {
-				src: ['src/**/*.js'],
+				src: ['src/commons-module.js', 'src/**/*.js'],
 				dest: 'build/angular-commons.js'
 			},
 			sassStyles: {
 				src: ['src/**/*.scss'],
 				dest: 'build/.tmp/angular-commons.scss'
+			},
+			demoScripts: {
+				src: ['demo/demo-module.js', 'demo/**/*.js'],
+				dest: 'build/angular-commons-demo.js'
 			}
 		},
 
@@ -55,7 +60,7 @@ module.exports = function(grunt) {
 				livereload: true
 			},
 			all: {
-				files: ['src/**/*.js', 'src/**/*.scss', 'src/**/*.html'],
+				files: ['src/**/*.js', 'src/**/*.scss', 'src/**/*.html', 'demo/**/*'],
 				tasks: buildTasks,
 				options: {
 					spawn: false,
