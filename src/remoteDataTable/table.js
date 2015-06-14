@@ -26,6 +26,7 @@ angular.module('commons')
 					selectColumn: false,
 					multiSelect: true,
 					substituteRows: true,
+					expandableRows: false,
 					parentScope: false
 				};
 
@@ -52,6 +53,7 @@ angular.module('commons')
 					page: 1
 				};
 
+				scope.expandColumnVisible = scope.options.expandableRows;
 				scope.indexColumnVisible = scope.options.indexColumn;
 				scope.selectColumnVisible = scope.options.selectColumn;
 				scope.columnSelectorOpen = false;
@@ -83,6 +85,17 @@ angular.module('commons')
 					} else {
 						return $index + 1;
 					}
+				};
+
+				scope.getColumnCount = function() {
+					var count = 0;
+					count += scope.indexColumnVisible ? 1 : 0;
+					count += scope.selectColumnVisible ? 1 : 0;
+					count += scope.expandColumnVisible ? 1 : 0;
+					scope.columns.forEach(function(column) {
+						count += column.visibleState ? 1 : 0;
+					});
+					return count;
 				};
 
 				scope.getRowColor = function(item, $index) {
@@ -139,8 +152,24 @@ angular.module('commons')
 					});
 				};
 
+				scope.clearRowExpansions = function() {
+					scope.items.forEach(function(item) {
+						delete item._expanded;
+					});	
+				};
+
 				scope.getSubstitudeRows = function() {
 					return new Array(scope.pagination.limit - scope.items.length);
+				};
+
+				scope.rowClicked = function(item, $index, $event) {
+					if (scope.options.rowClicked) {
+						scope.options.rowClicked(item, $index, $event);
+					}
+				};
+
+				scope.rowExpandToggle = function(item) {
+					item._expanded = !item._expanded;
 				};
 
 				scope.getRemoteParameters = function() {
@@ -158,6 +187,7 @@ angular.module('commons')
 
 				scope.reload = function() {
 					scope.clearSelection();
+					scope.clearRowExpansions();
 					scope.reloadRemoteData(scope.getRemoteParameters());
 				};
 

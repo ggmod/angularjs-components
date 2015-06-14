@@ -25,6 +25,10 @@
 	.sortable-column {
 		cursor: pointer;
 	}
+	.row-expand-button {
+		cursor: pointer;
+		text-align: center;
+	}
 
 	.pagination-range {
 		margin-top: 10px;
@@ -54,8 +58,19 @@
 		height: 31px;
 	}
 
+	// I can't use the bootstrap striped table, because of the expandable rows
+	.datatable-row-odd {
+		background-color: #F6F6F6;
+	}
+	.datatable-row-even {
+	}
+
 	// bootstrap override:
+
 	.table-hover > tbody > tr:hover {
  		background-color: #ECECEC;
+	}
+	.table>tbody+tbody {
+		border-top: none;
 	}
 }

@@ -13,6 +13,10 @@
 		</div>
 		<div style="position:relative">
 			<div class="column-selector-box" ng-show="columnSelectorOpen" style="position: absolute">
+				<div ng-show="options.expandableRows">
+					<input type="checkbox" ng-model="expandColumnVisible"/>
+					<span style="font-style: italic">expand</span>
+				</div>
 				<div ng-show="options.indexColumn">
 					<input type="checkbox" ng-model="indexColumnVisible"/>
 					<span style="font-style: italic">index</span>
@@ -30,9 +34,10 @@
 	</div>
 
 	<div class="data-table-box">
-		<table class="table table-condensed table-hover table-striped table-bordered remote-data-table">
+		<table class="table table-condensed table-hover table-bordered remote-data-table">
 			<thead>
 				<tr>
+					<th ng-hide="!expandColumnVisible" style="width: 50px;">
 					<th ng-hide="!indexColumnVisible" style="width: 50px;">
 						<span ng-bind="options.indexColumnHeader"></span>
 					</th>
@@ -50,8 +55,14 @@
 					</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr ng-repeat="item in items" ng-style="{ 'background-color': getRowColor(item, $index) }">
+			<tbody ng-repeat="item in items">
+				<tr ng-style="{ 'background-color': getRowColor(item, $index) }" 
+					ng-class="{'datatable-row-odd': $index % 2 === 0, 'datatable-row-even': $index % 2 === 1}"
+					ng-click="rowClicked(item, $index, $event)">
+					<td ng-show="expandColumnVisible" ng-click="rowExpandToggle(item)" class="row-expand-button">
+						<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" ng-show="!item._expanded"></span>
+						<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" ng-show="item._expanded"></span>
+					</td>
 					<td ng-show="indexColumnVisible" ng-bind="getRowIndex($index)"></td>
 					<td ng-show="selectColumnVisible" style="text-align: center">
 						<input type="checkbox" ng-model="item._selected" ng-change="selectRowToggle(item, $index)"/>
@@ -63,7 +74,16 @@
 						</div>
 					</td>
 				</tr>
-				<tr ng-if="options.pagination && options.substituteRows" ng-repeat="substituteRow in getSubstitudeRows() track by $index">
+				<tr ng-if="options.expandableRows" ng-show="item._expanded">
+					<td colspan="{{getColumnCount()}}">
+						<div remote-data-table-row-expansion-template></div>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr ng-if="options.pagination && options.substituteRows" ng-repeat="substituteRow in getSubstitudeRows() track by $index"
+					ng-class="{'datatable-row-odd': ($index + items.length) % 2 === 0, 'datatable-row-even': (items.length + $index) % 2 === 1}">
+					<td ng-show="expandColumnVisible"></td>
 					<td ng-show="indexColumnVisible" style="color: transparent"> - </td>
 					<td ng-show="selectColumnVisible"></td>
 					<td ng-repeat="column in columns" ng-if="column.visibleState"></td>

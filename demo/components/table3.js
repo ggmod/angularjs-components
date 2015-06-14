@@ -46,6 +46,8 @@ angular.module('commonsDemo')
 			selectColumn: true,
 			multiSelect: false,
 			substituteRows: false,
+			expandableRows: true,
+			rowExpansionTemplate: '<div ng-bind="item.description" style="padding: 5px; color: gray"></div>',
 			publicScope: {}
 		};
 
