@@ -7,7 +7,8 @@ angular.module('commons')
 				itemCount: '=',
 				columns: '=',
 				reloadRemoteData: '=',
-				options: '=?'
+				options: '=?',
+				publicScope: '=?'
 			},
 			restrict: 'E',
 			replace: true,
@@ -19,8 +20,12 @@ angular.module('commons')
 				var defaultOptions = {
 					pagination: true,
 					indexColumn: true,
+					indexColumnHeader: '#',
 					paginationLimit: 10,
 					rowColors: [],
+					selectColumn: false,
+					multiSelect: true,
+					substituteRows: true,
 					parentScope: false
 				};
 
@@ -48,11 +53,15 @@ angular.module('commons')
 				};
 
 				scope.indexColumnVisible = scope.options.indexColumn;
+				scope.selectColumnVisible = scope.options.selectColumn;
 				scope.columnSelectorOpen = false;
 
 				if (scope.options.parentScope) {
 					scope.parentScope = scope.$parent;
 				}
+
+				scope.publicScope = scope.options.publicScope || {};
+				scope.publicScope.selected = scope.options.multiSelect ? [] : null;
 
 				// functions:
 
@@ -86,6 +95,54 @@ angular.module('commons')
 					return color;
 				};
 
+				scope.selectAllToggle = function() {
+					scope.publicScope.selected = [];
+
+					if (scope.selectAllCheckbox) {
+						scope.items.forEach(function(item) {
+							scope.publicScope.selected.push(item);
+							item._selected = true;
+						});
+					} else {
+						scope.items.forEach(function(item) {
+							item._selected = false;
+						});
+					}
+				};
+
+				scope.selectRowToggle = function(item) {
+					if (!item._selected) {
+						if (scope.options.multiSelect) {
+							scope.publicScope.selected.splice(
+								scope.publicScope.selected.indexOf(item), 1);
+						} else {
+							scope.publicScope.selected = null;
+						}
+					} else {
+						if (scope.options.multiSelect) {
+							scope.publicScope.selected.push(item);
+						} else {
+							scope.publicScope.selected = item;
+							scope.items.forEach(function(otherItem) {
+								if (item !== otherItem) {
+									otherItem._selected = false;
+								}
+							});
+						}
+					}
+				};
+
+				scope.clearSelection = function() {
+					scope.publicScope.selected = scope.options.multiSelect ? [] : null;
+					scope.items.forEach(function(item) {
+						delete item._selected;
+					});
+				};
+
+				scope.getSubstitudeRows = function() {
+					return new Array(scope.pagination.limit - scope.items.length);
+				};
+
 				scope.getRemoteParameters = function() {
 					var params = {};
 					if (scope.sortBy) {
@@ -100,6 +157,7 @@ angular.module('commons')
 				};
 
 				scope.reload = function() {
+					scope.clearSelection();
 					scope.reloadRemoteData(scope.getRemoteParameters());
 				};
 

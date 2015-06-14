@@ -11,7 +11,7 @@ angular.module('commons')
 						callback = params;
 					}
 
-					var result = items.slice(0, items.length); // to make a copy
+					var result = items.slice(0, items.length); // to make a copy (but it is still shallow)
 					if (params) {
 						if (params.sortBy) {
 							result.sort(function(a, b) {

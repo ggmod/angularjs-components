@@ -39,6 +39,26 @@
             reload-remote-data="reloadCars"
             >
           </remote-data-table>
+          <div>
+            <div><b>Selected:</b> (<span ng-bind="carOptions.publicScope.selected.length"></span>)</div>
+            <div ng-repeat="selected in carOptions.publicScope.selected">
+                <span ng-bind="selected.model"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div ng-controller="FilmsCtrl">
+        <div style="margin: auto; max-width: 800px">
+          <remote-data-table
+            items="films"
+            item-count="filmCount.count"
+            columns="filmColumns"
+            options="filmOptions"
+            reload-remote-data="reloadFilms"
+            >
+          </remote-data-table>
+          <div><b>Selected:</b> <span ng-bind="filmOptions.publicScope.selected.title"></span></div>
         </div>
       </div>
 

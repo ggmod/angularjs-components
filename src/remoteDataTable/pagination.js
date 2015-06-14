@@ -23,7 +23,7 @@ angular.module('commons')
 				};
 
 				scope.pageLast = function() {
-					scope.pagination.offset = Math.floor(scope.itemCount / scope.pagination.limit) * scope.pagination.limit;
+					scope.pagination.offset = (Math.ceil(scope.itemCount / scope.pagination.limit) - 1) * scope.pagination.limit;
 					scope.reload();
 				};
 

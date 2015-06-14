@@ -42,7 +42,10 @@ angular.module('commonsDemo')
 					return car.year >= $scope.yearLimit;
 				}
 			}],
-			parentScope: true
+			selectColumn: true,
+			multiSelect: true,
+			parentScope: true,
+			publicScope: {}
 		};
 
 		$scope.yearLimit = 1999;

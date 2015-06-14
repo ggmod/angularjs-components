@@ -17,6 +17,10 @@
 					<input type="checkbox" ng-model="indexColumnVisible"/>
 					<span style="font-style: italic">index</span>
 				</div>
+				<div ng-show="options.selectColumn">
+					<input type="checkbox" ng-model="selectColumnVisible"/>
+					<span style="font-style: italic">select</span>
+				</div>
 				<div ng-repeat="column in columns">
 					<input type="checkbox" ng-model="column.visibleState"/>
 					<span ng-bind="column.displayName"></span>
@@ -29,7 +33,12 @@
 		<table class="table table-condensed table-hover table-striped table-bordered remote-data-table">
 			<thead>
 				<tr>
-					<th ng-hide="!indexColumnVisible" style="width: 50px;">#</th>
+					<th ng-hide="!indexColumnVisible" style="width: 50px;">
+						<span ng-bind="options.indexColumnHeader"></span>
+					</th>
+					<th ng-hide="!selectColumnVisible" style="width: 40px; text-align: center">
+						<input ng-hide="!options.multiSelect" type="checkbox" ng-model="selectAllCheckbox" ng-change="selectAllToggle()"/>
+					</th>
 					<th ng-repeat="column in columns" ng-if="column.visibleState" ng-click="sortColumn(column)" ng-class="{'sortable-column': column.sortable}"
 						ng-style="{width: column.width}">
 						<span ng-if="!column.headerTemplate" ng-bind="column.displayName"></span>
@@ -44,12 +53,20 @@
 			<tbody>
 				<tr ng-repeat="item in items" ng-style="{ 'background-color': getRowColor(item, $index) }">
 					<td ng-show="indexColumnVisible" ng-bind="getRowIndex($index)"></td>
+					<td ng-show="selectColumnVisible" style="text-align: center">
+						<input type="checkbox" ng-model="item._selected" ng-change="selectRowToggle(item, $index)"/>
+					</td>
 					<td ng-repeat="column in columns" ng-if="column.visibleState">
 						<div>
 							<span ng-if="!column.cellTemplate" ng-bind="item[column.property]"></span>
 							<span ng-if="column.cellTemplate" remote-data-table-cell-template></span>
 						</div>
 					</td>
+				</tr>
+				<tr ng-if="options.pagination && options.substituteRows" ng-repeat="substituteRow in getSubstitudeRows() track by $index">
+					<td ng-show="indexColumnVisible" style="color: transparent"> - </td>
+					<td ng-show="selectColumnVisible"></td>
+					<td ng-repeat="column in columns" ng-if="column.visibleState"></td>
 				</tr>
 			</tbody>
 		</table>
