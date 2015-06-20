@@ -1,8 +1,9 @@
 angular.module('commons')
-	.directive('dialog', function($timeout) {
+	.directive('dialog', function($document) {
 		return {
 			scope: {
-				visible: '='
+				visible: '=',
+				size: '@' // one of ['small', 'medium', 'large']
 			},
 			restrict: 'E',
 			replace: true,
@@ -14,7 +15,25 @@ angular.module('commons')
 					$scope.close();
 				};
 			},
-			link: function(scope, element) {
+			link: function(scope, element, attrs) {
+
+				// options:
+
+				function parseBoolParam(param) {
+					return angular.isDefined(param) ? param === 'true' : true;
+				}
+
+				scope.backdrop = parseBoolParam(attrs.backdrop);
+				scope.closeByBackdrop = parseBoolParam(attrs.closeByBackdrop);
+				scope.closeByEsc = parseBoolParam(attrs.closeByEsc);
+
+				scope.sizeClass = {
+					'small': 'modal-sm',
+					'medium': '',
+					'large': 'modal-lg'
+				};
+
+				// scrollbar: 
 
 				var bodyOverflowed = false;
 				var originalPadding = null;
@@ -51,14 +70,16 @@ angular.module('commons')
 					if (scope.visible) {
 						handleScrollbarAtOpen();
 						document.body.classList.add('modal-open');
+						$document.on('keydown', escHandler);
 					} else {
 						handleScrollbarAtClose();
 						document.body.classList.remove('modal-open');
+						$document.off('keydown', escHandler);
 					}
 				});
 
 				scope.clicked = function(event) {
-					if (event.target.classList.contains('fade')) {
+					if (event.target.classList.contains('fade') && scope.closeByBackdrop) {
 						scope.close();
 					}
 				};
@@ -66,6 +87,13 @@ angular.module('commons')
 				scope.close = function() {
 					scope.visible = false;
 				};
+
+				function escHandler(event) {
+					if (event.keyCode === 27 && scope.closeByEsc) {
+						scope.close();
+						scope.$apply();
+					}
+				}
 			}
 		};
 	});

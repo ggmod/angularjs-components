@@ -1,7 +1,7 @@
 <div>
-	<div class="modal-backdrop fade" ng-class="{in: visible}" ng-show="visible"></div>
+	<div class="modal-backdrop fade" ng-class="{in: visible}" ng-show="visible" ng-if="backdrop"></div>
 	<div class="modal fade" ng-class="{in: visible}" ng-style="{display: visible ? 'block' : 'none'}" ng-click="clicked($event)" >
-		<div class="modal-dialog">
+		<div class="modal-dialog" ng-class="sizeClass[size]">
 			<div class="modal-content">
 				 <div ng-if="visible" ng-transclude></div>
 			</div><!-- /.modal-content -->

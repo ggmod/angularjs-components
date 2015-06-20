@@ -30,6 +30,74 @@
           </dialog-footer>  
         </dialog>
 
+        <div>Basic dialog:</div>
+        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
+      </div>
+
+      <br/>
+
+      <div ng-controller="Dialog1Ctrl" class="login-dialog">
+
+        <dialog visible="dialogProperties.visible">
+          <dialog-header>
+            <h4 class="modal-title">
+              <span class="glyphicon glyphicon-lock"></span>
+              Login
+            </h4>
+          </dialog-header>
+          <dialog-body>
+            <p>Modal body...</p>
+          </dialog-body>
+          <dialog-footer>
+            <button class="btn btn-danger btn-default pull-left" ng-click="cancel()">
+              <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+            <p>Not a member? <a href="#">Sign Up</a></p>
+            <p>Forgot <a href="#">Password?</a></p>
+          </dialog-footer>  
+        </dialog>
+
+        <div>Styling:</div>
+        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
+      </div>
+
+      <br/>
+
+      <div ng-controller="Dialog1Ctrl">
+
+        <dialog visible="dialogProperties.visible"
+                backdrop="false"
+                close-by-backdrop="false"
+                close-by-esc="false"
+                size="small"
+                >
+          <dialog-header hide-close="true">
+            <h4 class="modal-title">Modal title</h4>
+          </dialog-header>
+          <dialog-body>
+            <p>Modal body</p>
+          </dialog-body>
+          <dialog-footer>
+            <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+          </dialog-footer>  
+        </dialog>
+
+        <div>Different options:</div>
+        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
+      </div>
+
+      <br/>
+
+      <div ng-controller="Dialog1Ctrl" class="login-dialog">
+
+        <dialog visible="dialogProperties.visible">
+          <dialog-body>
+            <p>Content ...</p>
+          </dialog-body>
+        </dialog>
+
+        <div>Empty dialog:</div>
         <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
       </div>
 

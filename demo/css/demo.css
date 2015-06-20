@@ -5,3 +5,16 @@
 	border-left: 1px solid rgb(221, 221, 221);
 	border-right: 1px solid rgb(221, 221, 221);
 }
+
+.login-dialog .modal-header {
+	background-color: #5cb85c;
+	color: white !important;
+	text-align: center;
+	padding: 35px 50px;
+}
+.login-dialog .modal-header h4 {
+	font-size: 30px;
+}
+.login-dialog .modal-footer {
+	background-color: #f9f9f9;
+}

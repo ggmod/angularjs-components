@@ -2,7 +2,7 @@ angular.module('commons')
 	.directive('dialogHeader', function() {
 		return {
 			scope: {
-				hideClose: "@"
+				hideClose: "=?"
 			},
 			require: '^dialog',
 			restrict: 'E',
