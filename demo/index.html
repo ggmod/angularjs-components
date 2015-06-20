@@ -9,10 +9,31 @@
     <link rel="stylesheet" type="text/css" href="css/demo.css"></link>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
     <script type="text/javascript" src="../build/angular-commons.js"></script>
     <script type="text/javascript" src="../build/angular-commons-demo.js"></script>
   </head>
   <body style="font-size: 13px; padding: 15px">
+
+      <div ng-controller="Dialog1Ctrl">
+
+        <dialog visible="dialogProperties.visible">
+          <dialog-header>
+            <h4 class="modal-title">Modal title</h4>
+          </dialog-header>
+          <dialog-body>
+            <p>Modal body</p>
+          </dialog-body>
+          <dialog-footer>
+            <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+          </dialog-footer>  
+        </dialog>
+
+        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
+      </div>
+
+      <hr/>
 
       <div ng-controller="TabsCtrl">   		
         <tab-container selected="tabs1.selectedTab">
