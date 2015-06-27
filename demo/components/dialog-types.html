@@ -1,0 +1,36 @@
+<div>
+	<div ng-controller="ConfirmCtrl">
+		<confirm-dialog 
+			visible="dialog.visible"
+			item="{{itemToRemove.name}}"
+			callback="dialog.confirmed">
+		</confirm-dialog>
+
+		<div>Confirm:</div>
+		<button class="btn btn-primary" ng-click="dialog.visible = true">Show</button>
+	<div>
+	<br/>
+	<div ng-controller="ConfirmCtrl">
+		<confirm-dialog 
+			visible="dialog.visible"
+			item="{{itemToRemove.name}}"
+			callback="dialog.confirmed"
+			title="Deleting item"
+			message="message comes here">
+		</confirm-dialog>
+
+		<div>Custom confirm:</div>
+		<button class="btn btn-primary" ng-click="dialog.visible = true">Show</button>
+	</div>
+	<br/>
+	<div ng-controller="AlertCtrl">
+		<alert-dialog 
+			visible="dialog.visible"
+			title="Warning"
+			message="{{dialog.message}}">
+		</alert-dialog>
+
+		<div>Alert dialog:</div>
+		<button class="btn btn-primary" ng-click="dialog.visible = true">Show</button>
+	</div>
+</div>

@@ -56,14 +56,14 @@ angular.module('commons')
 
 					if (bodyOverflowed) {
 						document.body.style.paddingRight = originalPadding + scrollbarWidth + 'px';
-					};
+					}
 				}
 
 				function handleScrollbarAtClose() {
 					if (bodyOverflowed) {
 						document.body.style.paddingRight = originalPadding + 'px';
 						bodyOverflowed = false;
-					};
+					}
 				}
 
 				scope.$watch('visible', function() {

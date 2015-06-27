@@ -1,0 +1,16 @@
+<div class="alert-dialog">
+  <dialog visible="visible" size="medium">
+    <dialog-header>
+      <h4 class="modal-title">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <span ng-bind="title"></span>
+      </h4>
+    </dialog-header>
+    <dialog-body>
+      <div ng-bind="message"></div>
+    </dialog-body>
+    <dialog-footer style="text-align: center">
+      <button type="button" class="btn btn-primary" ng-click="close()">OK</button>
+    </dialog-footer>
+  </dialog>
+</div> 

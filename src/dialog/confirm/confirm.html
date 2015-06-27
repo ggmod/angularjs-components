@@ -1,0 +1,19 @@
+<div class="confirm-dialog">
+  <dialog visible="visible" size="medium">
+    <dialog-header>
+      <h4 class="modal-title" ng-bind="title"></h4>
+    </dialog-header>
+    <dialog-body>
+      <div>
+        <div ng-bind="message"></div>
+        <div>
+          <span class="confirm-dialog-item" ng-bind="item"></span>
+        </div>
+      </div>
+    </dialog-body>
+    <dialog-footer>
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button type="button" class="btn btn-danger" ng-click="confirm()">Confirm</button>
+    </dialog-footer>  
+  </dialog>
+</div> 
