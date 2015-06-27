@@ -18,3 +18,9 @@
 .login-dialog .modal-footer {
 	background-color: #f9f9f9;
 }
+
+.page-title {
+	margin-top: 0;
+	margin-bottom: 20px;
+	color: rgb(140, 140, 140);
+}

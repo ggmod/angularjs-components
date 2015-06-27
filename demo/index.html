@@ -15,183 +15,26 @@
   </head>
   <body style="font-size: 13px; padding: 15px">
 
-      <div ng-controller="Dialog1Ctrl">
+    <h2 class="page-title">Angular components showcase</h2>
 
-        <dialog visible="dialogProperties.visible">
-          <dialog-header>
-            <h4 class="modal-title">Modal title</h4>
-          </dialog-header>
-          <dialog-body>
-            <p>Modal body</p>
-          </dialog-body>
-          <dialog-footer>
-            <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
-          </dialog-footer>  
-        </dialog>
-
-        <div>Basic dialog:</div>
-        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
-      </div>
-
-      <br/>
-
-      <div ng-controller="Dialog1Ctrl" class="login-dialog">
-
-        <dialog visible="dialogProperties.visible">
-          <dialog-header>
-            <h4 class="modal-title">
-              <span class="glyphicon glyphicon-lock"></span>
-              Login
-            </h4>
-          </dialog-header>
-          <dialog-body>
-            <p>Modal body...</p>
-          </dialog-body>
-          <dialog-footer>
-            <button class="btn btn-danger btn-default pull-left" ng-click="cancel()">
-              <span class="glyphicon glyphicon-remove"></span> Cancel
-            </button>
-            <p>Not a member? <a href="#">Sign Up</a></p>
-            <p>Forgot <a href="#">Password?</a></p>
-          </dialog-footer>  
-        </dialog>
-
-        <div>Styling:</div>
-        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
-      </div>
-
-      <br/>
-
-      <div ng-controller="Dialog1Ctrl">
-
-        <dialog visible="dialogProperties.visible"
-                backdrop="false"
-                close-by-backdrop="false"
-                close-by-esc="false"
-                size="small"
-                >
-          <dialog-header hide-close="true">
-            <h4 class="modal-title">Modal title</h4>
-          </dialog-header>
-          <dialog-body>
-            <p>Modal body</p>
-          </dialog-body>
-          <dialog-footer>
-            <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
-          </dialog-footer>  
-        </dialog>
-
-        <div>Different options:</div>
-        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
-      </div>
-
-      <br/>
-
-      <div ng-controller="Dialog1Ctrl" class="login-dialog">
-
-        <dialog visible="dialogProperties.visible">
-          <dialog-body>
-            <p>Content ...</p>
-          </dialog-body>
-        </dialog>
-
-        <div>Empty dialog:</div>
-        <button class="btn btn-primary" ng-click="dialogProperties.visible = true">Show</button>
-      </div>
-
-      <hr/>
-
-      <div ng-controller="TabsCtrl">   		
-        <tab-container selected="tabs1.selectedTab">
-          <tab-headers>
-            <tab-header tab-id="TAB1">Tab 1</tab-header>
-            <tab-header tab-id="TAB2">Tab 2</tab-header>
-            <tab-header tab-id="OTHER_TAB1">{{tabs1.otherTabName}} 1</tab-header>
-            <tab-header tab-id="OTHER_TAB2">
-              <span style="font-weight: bold">{{tabs1.otherTabName}} 2</span>
-              <span class="glyphicon glyphicon-star"></span>
-            </tab-header>
-          </tab-headers>
-          <div class="tab-pane" ng-show="tabs1.selectedTab === 'TAB1'">Tab Pane content #1</div>
-          <div class="tab-pane" ng-show="tabs1.selectedTab === 'TAB2'">Tab Pane content #2</div>
-          <div class="tab-pane" ng-show="tabs1.selectedTab === 'OTHER_TAB1'">Tab Pane content #3</div>
-          <div class="tab-pane" ng-show="tabs1.selectedTab === 'OTHER_TAB2'">Tab Pane content #4</div>
-        </tab-container>
-
-        <br/>
-        <div>Selected tab ID: {{tabs1.selectedTab}}</div>
-        <button class="btn btn-default btn-sm" ng-click="tabs1.selectedTab = 'TAB2'">
-          Selected second tab
-        </button>
+    <tab-container>
+      <tab-headers justified="true">
+        <tab-header>Data table</tab-header>
+        <tab-header selected="true">Dialog</tab-header>
+        <tab-header>Other</tab-header>
+      </tab-headers>
+      <tab-panes>
+        <tab-pane>
+          <div ng-include="'components/data-table.html'"></div>
+        </tab-pane>
+        <tab-pane>
+          <div ng-include="'components/dialog.html'"></div>
+        </tab-pane>
+        <tab-pane>
+          <div ng-include="'components/other.html'"></div>
+        </tab-pane>
+      </tab-panes>
+    </tab-container>
       
-        <hr/>
-
-        <tab-container>
-          <tab-headers justified="true">
-            <tab-header>Tab 1</tab-header>
-            <tab-header selected="true">Tab 2</tab-header>
-            <tab-header>Tab 3</tab-header>
-          </tab-headers>
-          <tab-panes>
-            <tab-pane>Tab Pane content #1</tab-pane>
-            <tab-pane>Tab Pane content #2</tab-pane>
-            <tab-pane>Tab Pane content #3</tab-pane>
-          </tab-panes>
-        </tab-container>
-      </div>
-
-      <hr/>
-
-   		<div ng-controller="TaskCtrl">
-	    	<div style="margin: auto; max-width: 1000px">
-		    	<remote-data-table id="tasks-grid"
-            items="tasks"
-		    		item-count="taskCount.count"
-            columns="taskColumns"
-            reload-remote-data="reloadTasks"
-		    		>
-		    	</remote-data-table>
-		    </div>
-    	</div>
-      <hr/>
-      <div ng-controller="CarsCtrl">
-        <div style="margin: auto; max-width: 600px">
-          <div>
-            <span>Year limit: </span>
-            <input type="number" ng-model="yearLimit">
-          </div>
-          <remote-data-table
-            items="cars"
-            item-count="carCount.count"
-            columns="carColumns"
-            options="carOptions"
-            reload-remote-data="reloadCars"
-            >
-          </remote-data-table>
-          <div>
-            <div><b>Selected:</b> (<span ng-bind="carOptions.publicScope.selected.length"></span>)</div>
-            <div ng-repeat="selected in carOptions.publicScope.selected">
-                <span ng-bind="selected.model"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr/>
-      <div ng-controller="FilmsCtrl">
-        <div style="margin: auto; max-width: 800px">
-          <remote-data-table
-            items="films"
-            item-count="filmCount.count"
-            columns="filmColumns"
-            options="filmOptions"
-            reload-remote-data="reloadFilms"
-            >
-          </remote-data-table>
-          <div><b>Selected:</b> <span ng-bind="filmOptions.publicScope.selected.title"></span></div>
-        </div>
-      </div>
-
   </body>
 </html>

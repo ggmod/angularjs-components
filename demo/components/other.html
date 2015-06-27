@@ -1,0 +1,40 @@
+<div style="padding: 15px">
+  <div ng-controller="TabsCtrl">   		
+    <tab-container selected="tabs1.selectedTab">
+      <tab-headers>
+        <tab-header tab-id="TAB1">Tab 1</tab-header>
+        <tab-header tab-id="TAB2">Tab 2</tab-header>
+        <tab-header tab-id="OTHER_TAB1">{{tabs1.otherTabName}} 1</tab-header>
+        <tab-header tab-id="OTHER_TAB2">
+          <span style="font-weight: bold">{{tabs1.otherTabName}} 2</span>
+          <span class="glyphicon glyphicon-star"></span>
+        </tab-header>
+      </tab-headers>
+      <div class="tab-pane" ng-show="tabs1.selectedTab === 'TAB1'">Tab Pane content #1</div>
+      <div class="tab-pane" ng-show="tabs1.selectedTab === 'TAB2'">Tab Pane content #2</div>
+      <div class="tab-pane" ng-show="tabs1.selectedTab === 'OTHER_TAB1'">Tab Pane content #3</div>
+      <div class="tab-pane" ng-show="tabs1.selectedTab === 'OTHER_TAB2'">Tab Pane content #4</div>
+    </tab-container>
+
+    <br/>
+    <div>Selected tab ID: {{tabs1.selectedTab}}</div>
+    <button class="btn btn-default btn-sm" ng-click="tabs1.selectedTab = 'TAB2'">
+      Selected second tab
+    </button>
+
+    <hr/>
+
+    <tab-container>
+      <tab-headers justified="true">
+        <tab-header>Tab 1</tab-header>
+        <tab-header selected="true">Tab 2</tab-header>
+        <tab-header>Tab 3</tab-header>
+      </tab-headers>
+      <tab-panes>
+        <tab-pane>Tab Pane content #1</tab-pane>
+        <tab-pane>Tab Pane content #2</tab-pane>
+        <tab-pane>Tab Pane content #3</tab-pane>
+      </tab-panes>
+    </tab-container>
+  </div>
+</div>
