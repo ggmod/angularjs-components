@@ -1,7 +1,7 @@
 <div class="edit-dialog">
-  <dialog visible="visible" size="medium">
+  <dialog visible="visible" size="{{options.display.size}}">
     <dialog-header>
-      <h4 class="modal-title">Edit dialog</h4>
+      <h4 class="modal-title"><span ng-bind="options.display.title"></span></h4>
     </dialog-header>
     <dialog-body>
       <div>
@@ -11,15 +11,22 @@
     </dialog-body>
     <dialog-footer>
       <span class="pull-left">
-        <button type="button" class="btn btn-danger" ng-click="remove()">
+        <button type="button" class="btn btn-danger" ng-click="remove()" 
+          ng-show="options.display.showRemove && !options.isNewItem(editedItem)">
           <span class="glyphicon glyphicon-trash"></span>
-          Remove
+          <span ng-bind="options.display.remove"></span>
           </button>
       </span>
       <span class="pull-right">
-        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="copy()">Copy</button>
-        <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">
+          <span ng-bind="options.display.cancel"></span>
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="copy()"
+          ng-show="options.display.showCopy && !options.isNewItem(editedItem)">
+          <span ng-bind="options.display.copy"></span></button>
+        <button type="button" class="btn btn-success" ng-click="save()">
+          <span ng-bind="options.display.save"></span>
+        </button>
       </span>
     </dialog-footer>  
   </dialog>

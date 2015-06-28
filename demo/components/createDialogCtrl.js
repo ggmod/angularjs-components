@@ -1,5 +1,5 @@
 angular.module('commonsDemo')
-	.controller('DemoEditDialogCtrl', function($scope, dialog) {
+	.controller('DemoCreateDialogCtrl', function($scope, dialog) {
 
 		var editorOptions = {
 			scope: $scope,
@@ -8,16 +8,8 @@ angular.module('commonsDemo')
 			editedItem: null
 		};
 
-		$scope.item = {
-			id: 123456,
-			name: 'John Smith',
-			email: 'asdfgh@mail.com',
-			age: 24,
-			married: true
-		};
-
 		$scope.openEditDialog = function() {
-			editorOptions.editedItem = $scope.item;
+			editorOptions.editedItem = { age: 18 };
 			dialog.editor(editorOptions);
 		};
 	});

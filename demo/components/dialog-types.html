@@ -51,8 +51,18 @@
 	</div>
 
 	<hr/>
-	<div ng-controller="DemoEditDialogsCtrl">
+	<div ng-controller="DemoEditDialogCtrl">
 		<div>Edit dialog</div>
+		<button class="btn btn-primary" ng-click="openEditDialog()">Show</button>
+	</div>
+	<br/>
+	<div ng-controller="DemoCreateDialogCtrl">
+		<div>Create new dialog</div>
+		<button class="btn btn-primary" ng-click="openEditDialog()">Show</button>
+	</div>
+	<br/>
+	<div ng-controller="DemoCustomEditDialogCtrl">
+		<div>Custom edit dialog</div>
 		<button class="btn btn-primary" ng-click="openEditDialog()">Show</button>
 	</div>
 </div>

@@ -18,7 +18,28 @@ angular.module('commons')
 			link: function(scope, element, attrs) {
 
 				scope.editedItem = angular.copy(scope.options.editedItem);
-				scope.options.beforeOperation = scope.options.beforeOperation || function() {};
+
+				function setDefaultOptions() {
+					scope.options.beforeOperation = scope.options.beforeOperation || function() {};
+					scope.options.isNewItem = scope.options.isNewItem || function(item) {
+						return item.id === undefined;
+					};
+
+					scope.options.display = scope.options.display || {};
+					scope.options.display.cancel = scope.options.display.cancel || 'Cancel';
+					scope.options.display.size = scope.options.display.size || 'medium';
+					scope.options.display.title = scope.options.display.title || 'Edit Dialog';
+					scope.options.display.remove = scope.options.display.remove || 'Remove';
+					scope.options.display.copy = scope.options.display.copy || 'Copy';
+					scope.options.display.save = scope.options.display.save || 'Save';
+					scope.options.display.showRemove = scope.options.display.showRemove === undefined ? 
+						true : scope.options.display.showRemove;
+					scope.options.display.showCopy = scope.options.display.showCopy === undefined ? 
+						true : scope.options.display.showCopy;
+				}
+
+				setDefaultOptions();
+
 
 				scope.cancel = function() {
 					scope.options.cancelHandler(scope.editedItem);
