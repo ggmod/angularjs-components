@@ -1,7 +1,7 @@
 angular.module('commons')
 	.factory('dialog', function($compile, $rootScope) {
 		
-		function buildStaticDialog(element) {
+		function buildStaticDialog(element, initScope) {
 
 			element.setAttribute('visible', 'dialog.visible');
 
@@ -9,6 +9,11 @@ angular.module('commons')
 			scope.dialog = {
 				visible: true // open immediately
 			};
+			if (initScope) {
+				Object.keys(initScope).forEach(function(key) {
+					scope[key] = initScope[key];
+				});
+			}
 
 			var compiledElement = $compile(element.outerHTML)(scope);
 			// TODO if I add it as document.body.appendChild without jQuery, then it can't be removed later!
@@ -74,6 +79,18 @@ angular.module('commons')
 					close: function() {
 						dialog.scope.visible = false;
 					}
+				};
+			},
+			editor: function(spec) {
+
+				var element = document.createElement('edit-dialog');
+				element.setAttribute('options', 'options');
+				var dialog = buildStaticDialog(element, { options: spec });
+
+				return {
+					close: function() {
+						dialog.scope.visible = false;
+					}	
 				};
 			}
 		};
