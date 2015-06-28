@@ -1,5 +1,5 @@
 angular.module('commonsDemo')
-	.controller('Dialog1Ctrl', function($scope) {
+	.controller('BasicDialogCtrl', function($scope) {
 
 		$scope.dialogProperties = {
 			visible: false

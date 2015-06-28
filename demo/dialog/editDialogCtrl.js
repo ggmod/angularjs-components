@@ -1,10 +1,10 @@
 angular.module('commonsDemo')
-	.controller('DemoEditDialogCtrl', function($scope, dialog) {
+	.controller('EditDialogCtrl', function($scope, dialog) {
 
 		var editorOptions = {
 			scope: $scope,
-			template: 'components/edit-dialog1.html',
-			controller: 'DemoEditDialog1Ctrl',
+			template: 'dialog/edit-panel.html',
+			controller: 'EditPanelCtrl',
 			editedItem: null
 		};
 

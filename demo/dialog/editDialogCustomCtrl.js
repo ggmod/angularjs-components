@@ -1,10 +1,10 @@
 angular.module('commonsDemo')
-	.controller('DemoCustomEditDialogCtrl', function($scope, dialog) {
+	.controller('CustomEditDialogCtrl', function($scope, dialog) {
 
 		var editorOptions = {
 			scope: $scope,
-			template: 'components/edit-dialog1.html',
-			controller: 'DemoEditDialog1Ctrl',
+			template: 'dialog/edit-panel.html',
+			controller: 'EditPanelCtrl',
 			editedItem: null,
 			display: {
 				title: 'Custom editor title',

@@ -1,5 +1,5 @@
 angular.module('commonsDemo')
-	.controller('DemoEditDialog1Ctrl', function($scope, editDialog) {
+	.controller('EditPanelCtrl', function($scope, editDialog) {
 
 		editDialog.saveHandler = function() {
 			console.log('Item saved:', $scope.editedItem);
