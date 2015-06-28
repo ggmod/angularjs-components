@@ -23,3 +23,9 @@
 	margin-bottom: 20px;
 	color: rgb(140, 140, 140);
 }
+
+.validation-error {
+	color: rgb(169, 68, 66);
+	padding: 10px 10px 0 10px;
+	text-shadow: 0 0 5px rgb(255, 201, 200);
+}

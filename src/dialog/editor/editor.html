@@ -5,15 +5,22 @@
     </dialog-header>
     <dialog-body>
       <div>
-        <edit-dialog-edit-panel>
-        </edit-dialog-edit-panel>
+          <edit-dialog-edit-panel>
+          </edit-dialog-edit-panel>
       </div>
     </dialog-body>
     <dialog-footer>
-      <button type="button" class="btn btn-danger" ng-click="remove()">Remove</button>
-      <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-      <button type="button" class="btn btn-primary" ng-click="copy()">Copy</button>
-      <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+      <span class="pull-left">
+        <button type="button" class="btn btn-danger" ng-click="remove()">
+          <span class="glyphicon glyphicon-trash"></span>
+          Remove
+          </button>
+      </span>
+      <span class="pull-right">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="copy()">Copy</button>
+        <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+      </span>
     </dialog-footer>  
   </dialog>
 </div> 

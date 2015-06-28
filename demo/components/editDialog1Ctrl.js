@@ -1,15 +1,21 @@
 angular.module('commonsDemo')
 	.controller('DemoEditDialog1Ctrl', function($scope, editDialog) {
 
-		editDialog.saveHandler = function(result) {
-			console.log('Item saved:', result);
+		editDialog.saveHandler = function() {
+			console.log('Item saved:', $scope.editedItem);
 		};
 
-		editDialog.cancelHandler = function(result) {
-			console.log('Item cancelled:', result);
+		editDialog.cancelHandler = function() {
+			console.log('Item cancelled:', $scope.editedItem);
 		};
 
-		editDialog.removeHandler = function(result) {
-			console.log('Item removed:', result);
+		editDialog.removeHandler = function() {
+			console.log('Item removed:', $scope.editedItem);
+		};
+
+		editDialog.beforeOperation = function(operation) {
+			if (operation === 'SAVE') {
+				console.log('Before save', $scope.editedItem);
+			}
 		};
 	});
