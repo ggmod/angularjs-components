@@ -44,7 +44,6 @@ angular.module('commonsDemo')
 			}],
 			selectColumn: true,
 			multiSelect: true,
-			parentScope: true,
 			publicScope: {}
 		};
 

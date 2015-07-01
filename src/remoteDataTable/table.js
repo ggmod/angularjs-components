@@ -7,8 +7,7 @@ angular.module('commons')
 				itemCount: '=',
 				columns: '=',
 				reloadRemoteData: '=',
-				options: '=?',
-				publicScope: '=?'
+				options: '=?'
 			},
 			restrict: 'E',
 			replace: true,
@@ -26,8 +25,7 @@ angular.module('commons')
 					selectColumn: false,
 					multiSelect: true,
 					substituteRows: true,
-					expandableRows: false,
-					parentScope: false
+					expandableRows: false
 				};
 
 				scope.options = scope.options || {};
@@ -58,9 +56,7 @@ angular.module('commons')
 				scope.selectColumnVisible = scope.options.selectColumn;
 				scope.columnSelectorOpen = false;
 
-				if (scope.options.parentScope) {
-					scope.parentScope = scope.$parent;
-				}
+				scope.parentScope = scope.$parent;
 
 				scope.publicScope = scope.options.publicScope || {};
 				scope.publicScope.selected = scope.options.multiSelect ? [] : null;

@@ -20,8 +20,9 @@
     <tab-container>
       <tab-headers justified="true">
         <tab-header>Data table</tab-header>
-        <tab-header selected="true">Dialog</tab-header>
+        <tab-header>Dialog</tab-header>
         <tab-header>Other</tab-header>
+        <tab-header selected="true">CRUD page</tab-header>
       </tab-headers>
       <tab-panes>
         <tab-pane>
@@ -35,6 +36,9 @@
         </tab-pane>
         <tab-pane>
           <div ng-include="'other/other.html'"></div>
+        </tab-pane>
+        <tab-pane>
+          <div ng-include="'crudPage/crud-page.html'"></div>
         </tab-pane>
       </tab-panes>
     </tab-container>

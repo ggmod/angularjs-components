@@ -12,7 +12,7 @@
     <dialog-footer>
       <span class="pull-left">
         <button type="button" class="btn btn-danger" ng-click="remove()" 
-          ng-show="options.display.showRemove && !options.isNewItem(editedItem)">
+          ng-show="options.display.showRemove && editedItem[options.idProperty] !== undefined">
           <span class="glyphicon glyphicon-trash"></span>
           <span ng-bind="options.display.remove"></span>
           </button>
@@ -22,10 +22,16 @@
           <span ng-bind="options.display.cancel"></span>
         </button>
         <button type="button" class="btn btn-primary" ng-click="copy()"
-          ng-show="options.display.showCopy && !options.isNewItem(editedItem)">
-          <span ng-bind="options.display.copy"></span></button>
-        <button type="button" class="btn btn-success" ng-click="save()">
-          <span ng-bind="options.display.save"></span>
+          ng-show="options.display.showCopy && editedItem[options.idProperty] !== undefined">
+          <span ng-bind="options.display.copy"></span>
+        </button>
+        <button type="button" class="btn btn-success" ng-click="create()" 
+            ng-show="editedItem[options.idProperty] === undefined">
+          <span ng-bind="options.display.create"></span>
+        </button>
+        <button type="button" class="btn btn-success" ng-click="update()" 
+            ng-show="editedItem[options.idProperty] !== undefined">
+          <span ng-bind="options.display.update"></span>
         </button>
       </span>
     </dialog-footer>  

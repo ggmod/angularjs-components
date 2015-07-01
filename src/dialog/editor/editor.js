@@ -19,25 +19,34 @@ angular.module('commons')
 
 				scope.editedItem = angular.copy(scope.options.editedItem);
 
+				scope.defaultOptions = {
+					beforeOperation: function() {},
+					idProperty: 'id',
+					display: {
+						size: 'medium',
+						title: 'Edit dialog',
+						cancel: 'Cancel',
+						copy: 'Copy',
+						create: 'Save',
+						update: 'Save',
+						remove: 'Remove',
+						showRemove: true,
+						showCopy: true,
+					}
+				};
+				
 				function setDefaultOptions() {
-					scope.options.beforeOperation = scope.options.beforeOperation || function() {};
-					scope.options.isNewItem = scope.options.isNewItem || function(item) {
-						return item.id === undefined;
-					};
-
-					scope.options.display = scope.options.display || {};
-					scope.options.display.cancel = scope.options.display.cancel || 'Cancel';
-					scope.options.display.size = scope.options.display.size || 'medium';
-					scope.options.display.title = scope.options.display.title || 'Edit Dialog';
-					scope.options.display.remove = scope.options.display.remove || 'Remove';
-					scope.options.display.copy = scope.options.display.copy || 'Copy';
-					scope.options.display.save = scope.options.display.save || 'Save';
-					scope.options.display.showRemove = scope.options.display.showRemove === undefined ? 
-						true : scope.options.display.showRemove;
-					scope.options.display.showCopy = scope.options.display.showCopy === undefined ? 
-						true : scope.options.display.showCopy;
+					Object.keys(scope.defaultOptions).forEach(function(key) {
+						if (scope.options[key] === undefined) {
+							scope.options[key] = scope.defaultOptions[key];
+						}
+					});
+					Object.keys(scope.defaultOptions.display).forEach(function(key) {
+						if (scope.options.display[key] === undefined) {
+							scope.options.display[key] = scope.defaultOptions.display[key];
+						}
+					});
 				}
-
 				setDefaultOptions();
 
 
@@ -51,8 +60,9 @@ angular.module('commons')
 						if (scope.options.beforeOperation('DELETE')) {
 							return false;
 						}
-						scope.options.removeHandler(scope.editedItem);
-						scope.visible = false;
+						scope.options.removeHandler(function() {
+							scope.visible = false;
+						});
 					});
 				};
 
@@ -64,20 +74,35 @@ angular.module('commons')
 					if (scope.options.beforeOperation('COPY')) {
 						return false;
 					}
-					scope.options.copyHandler(scope.editedItem);
-					scope.visible = false;
+					scope.options.copyHandler(function() {
+						scope.visible = false;
+					});
 				};
 
-				scope.save = function() {
+				scope.create = function() {
 					if (!scope.editorForm.$valid) {
 						scope.showValidationErrors();
 						return false;
 					}
-					if (scope.options.beforeOperation('SAVE')) {
+					if (scope.options.beforeOperation('CREATE')) {
 						return false;
 					}
-					scope.options.saveHandler(scope.editedItem);
-					scope.visible = false;
+					scope.options.createHandler(function() {
+						scope.visible = false;
+					});
+				};
+
+				scope.update = function() {
+					if (!scope.editorForm.$valid) {
+						scope.showValidationErrors();
+						return false;
+					}
+					if (scope.options.beforeOperation('UPDATE')) {
+						return false;
+					}
+					scope.options.updateHandler(function() {
+						scope.visible = false;
+					});
 				};
 
 				scope.showValidationErrors = function() {

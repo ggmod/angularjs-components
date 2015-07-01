@@ -73,4 +73,7 @@
 	.table>tbody+tbody {
 		border-top: none;
 	}
+	.table td {
+		vertical-align: middle;
+	}
 }

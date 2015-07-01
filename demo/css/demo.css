@@ -29,3 +29,8 @@
 	padding: 10px 10px 0 10px;
 	text-shadow: 0 0 5px rgb(255, 201, 200);
 }
+
+.row-button {
+	padding: 2px 6px;
+	margin-right: 4px;
+}

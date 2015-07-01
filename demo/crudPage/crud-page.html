@@ -1,0 +1,19 @@
+<div ng-controller="CrudPageCtrl">
+	<div style="margin: auto; max-width: 1000px">
+		<h2>
+			<span class="glyphicon glyphicon-user"></span>
+			Users
+		</h2>
+		<remote-data-table 
+			items="users"
+			item-count="userCount.count"
+			columns="userTableColumns"
+			reload-remote-data="reloadUsers"
+			>
+		</remote-data-table>
+		<a class="btn btn-default" ng-click="newItem()">
+			<span class="glyphicon glyphicon-plus-sign"></span>
+			Add User
+		</a>
+	</div>
+</div>

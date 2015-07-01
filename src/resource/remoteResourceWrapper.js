@@ -43,6 +43,46 @@ angular.module('commons')
 					return { // because $resource can only return objects, not single values
 						count: items.length
 					};
+				},
+				get: function(params, callback) {
+					items.forEach(function(item) {
+						if (Object.keys(params).every(function(paramKey) {
+							return item[paramKey] === params[paramKey];
+						})) {
+							callback(item);
+						}
+					});
+				},
+				create: function(item, callback) {
+					var newItem = angular.copy(item);
+					items.push(newItem);
+					callback(newItem);
+					// it won't have an "id" field
+				},
+				update: function(params, updatedItem, callback) {
+					items.forEach(function(item, index) {
+						if (Object.keys(params).every(function(paramKey) {
+							return item[paramKey] === params[paramKey];
+						})) {
+							items[index] = updatedItem;
+						}
+					});
+					callback();
+				},
+				remove: function(params, callback) {
+					/* jshint loopfunc:true */
+					var index = 0;
+					while (index < items.length) {
+						var item = items[index];
+						if (Object.keys(params).every(function(paramKey) {
+							return item[paramKey] === params[paramKey];
+						})) {
+							items.splice(index, 1);
+						} else {
+							index++;
+						}
+					}
+					/* jshint loopfunc:false */
 				}
 			};
 		};

@@ -9,11 +9,11 @@ angular.module('commonsDemo')
 			display: {
 				title: 'Custom editor title',
 				showRemove: false,
-				save: 'Update',
+				update: 'Update',
 				copy: 'Save as',
 				size: 'small'
 			},
-			isNewItem: function() { return false; }
+			idProperty: 'name'
 		};
 
 		$scope.item = {
