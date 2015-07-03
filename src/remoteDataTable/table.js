@@ -7,7 +7,8 @@ angular.module('commons')
 				itemCount: '=',
 				columns: '=',
 				reloadRemoteData: '=',
-				options: '=?'
+				options: '=?',
+				tableInterface: '=?'
 			},
 			restrict: 'E',
 			replace: true,
@@ -58,8 +59,8 @@ angular.module('commons')
 
 				scope.parentScope = scope.$parent;
 
-				scope.publicScope = scope.options.publicScope || {};
-				scope.publicScope.selected = scope.options.multiSelect ? [] : null;
+				scope.publicInterface = scope.tableInterface || {};
+				scope.publicInterface.selected = scope.options.multiSelect ? [] : null;
 
 				// functions:
 
@@ -105,11 +106,11 @@ angular.module('commons')
 				};
 
 				scope.selectAllToggle = function() {
-					scope.publicScope.selected = [];
+					scope.publicInterface.selected = [];
 
 					if (scope.selectAllCheckbox) {
 						scope.items.forEach(function(item) {
-							scope.publicScope.selected.push(item);
+							scope.publicInterface.selected.push(item);
 							item._selected = true;
 						});
 					} else {
@@ -122,16 +123,16 @@ angular.module('commons')
 				scope.selectRowToggle = function(item) {
 					if (!item._selected) {
 						if (scope.options.multiSelect) {
-							scope.publicScope.selected.splice(
-								scope.publicScope.selected.indexOf(item), 1);
+							scope.publicInterface.selected.splice(
+								scope.publicInterface.selected.indexOf(item), 1);
 						} else {
-							scope.publicScope.selected = null;
+							scope.publicInterface.selected = null;
 						}
 					} else {
 						if (scope.options.multiSelect) {
-							scope.publicScope.selected.push(item);
+							scope.publicInterface.selected.push(item);
 						} else {
-							scope.publicScope.selected = item;
+							scope.publicInterface.selected = item;
 							scope.items.forEach(function(otherItem) {
 								if (item !== otherItem) {
 									otherItem._selected = false;
@@ -142,7 +143,7 @@ angular.module('commons')
 				};
 
 				scope.clearSelection = function() {
-					scope.publicScope.selected = scope.options.multiSelect ? [] : null;
+					scope.publicInterface.selected = scope.options.multiSelect ? [] : null;
 					scope.items.forEach(function(item) {
 						delete item._selected;
 					});
@@ -186,7 +187,7 @@ angular.module('commons')
 					scope.clearRowExpansions();
 					scope.reloadRemoteData(scope.getRemoteParameters());
 				};
-
+				scope.publicInterface.reload = scope.reload;
 				scope.reload();
 			}
 		};

@@ -21,6 +21,7 @@ angular.module('commons')
 
 				scope.defaultOptions = {
 					beforeOperation: function() {},
+					afterOperation: function() {},
 					idProperty: 'id',
 					display: {
 						size: 'medium',
@@ -62,6 +63,7 @@ angular.module('commons')
 						}
 						scope.options.removeHandler(function() {
 							scope.visible = false;
+							scope.options.afterOperation('DELETE');
 						});
 					});
 				};
@@ -76,6 +78,7 @@ angular.module('commons')
 					}
 					scope.options.copyHandler(function() {
 						scope.visible = false;
+						scope.options.afterOperation('COPY');
 					});
 				};
 
@@ -89,6 +92,7 @@ angular.module('commons')
 					}
 					scope.options.createHandler(function() {
 						scope.visible = false;
+						scope.options.afterOperation('CREATE');
 					});
 				};
 
@@ -102,6 +106,7 @@ angular.module('commons')
 					}
 					scope.options.updateHandler(function() {
 						scope.visible = false;
+						scope.options.afterOperation('UPDATE');
 					});
 				};
 

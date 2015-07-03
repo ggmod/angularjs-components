@@ -23,6 +23,8 @@ angular.module('commonsDemo')
 		$scope.films = [];
 		$scope.filmCount = 0;
 
+		$scope.filmsTable = {};
+
 		$scope.filmColumns = [{
 			property: 'title',
 			displayName: 'Title',
@@ -47,8 +49,7 @@ angular.module('commonsDemo')
 			multiSelect: false,
 			substituteRows: false,
 			expandableRows: true,
-			rowExpansionTemplate: '<div ng-bind="item.description" style="padding: 5px; color: gray"></div>',
-			publicScope: {}
+			rowExpansionTemplate: '<div ng-bind="item.description" style="padding: 5px; color: gray"></div>'
 		};
 
 		$scope.reloadFilms = function(params) {

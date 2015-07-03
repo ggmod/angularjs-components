@@ -45,13 +45,15 @@ angular.module('commons')
 					};
 				},
 				get: function(params, callback) {
+					var selectedItem;
 					items.forEach(function(item) {
 						if (Object.keys(params).every(function(paramKey) {
 							return item[paramKey] === params[paramKey];
 						})) {
-							callback(item);
+							selectedItem = item;
 						}
 					});
+					callback(selectedItem);
 				},
 				create: function(item, callback) {
 					var newItem = angular.copy(item);
@@ -82,6 +84,7 @@ angular.module('commons')
 							index++;
 						}
 					}
+					callback();
 					/* jshint loopfunc:false */
 				}
 			};

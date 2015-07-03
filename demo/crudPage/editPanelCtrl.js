@@ -3,7 +3,7 @@ angular.module('commonsDemo')
 
 		$controller('AbstractRemoteEditDialogCtrl', {$scope: $scope, editDialog: editDialog, Resource: Users});
 
-		editDialog.cancelHandler = function() { 
-			console.log('Override cancel handler');
+		editDialog.afterOperation = function() { 
+			$scope.usersTable.reload();
 		};
 	});

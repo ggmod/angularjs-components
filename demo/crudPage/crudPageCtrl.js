@@ -1,40 +1,12 @@
 angular.module('commonsDemo')
 	.controller('CrudPageCtrl', function($scope, dialog, Users) {
 
-		// TODO this as an abstract controller too?
-
-		var editorOptions = {
-			scope: $scope,
-			template: 'dialog/edit-panel.html',
-			controller: 'CrudPageEditPanelCtrl',
-			editedItem: null
-		};
-
-		$scope.newItem = function() {
-			editorOptions.editedItem = { age: 18 };
-			dialog.editor(editorOptions);
-		};
-
-		$scope.editItem = function(item) {
-			Users.get({ id: item.id }, function(result) {
-				editorOptions.editedItem = result;
-				dialog.editor(editorOptions);
-			});
-		};
-
-		$scope.removeItem = function(item) {
-			dialog.confirm(item.name, function() {
-				Users.remove({ id: item.id }, function() {
-					// $scope.reloadUsers(); FIXME
-					console.log('item removed');
-				});
-			});
-		};
-
-
 		$scope.users = [];
+		$scope.usersCount = 0;
 
-		$scope.userTableColumns = [{
+		$scope.usersTable = {};
+
+		$scope.usersTableColumns = [{
 			property: 'name', 
 			displayName: 'Name',
 			sortable: true
@@ -64,9 +36,36 @@ angular.module('commonsDemo')
 			width: '100px'
 		}];
 
-		$scope.reloadUsers = function(params) {
-			$scope.users = Users.query(params);
+		$scope.reloadUsers = function(queryParams) {
+			$scope.users = Users.query(queryParams);
+			$scope.usersCount = Users.count().count;
 		};
 
-		$scope.userCount = Users.count();
+		var editorOptions = {
+			scope: $scope,
+			template: 'dialog/edit-panel.html',
+			controller: 'CrudPageEditPanelCtrl',
+			editedItem: null
+		};
+
+		$scope.newItem = function() {
+			editorOptions.editedItem = { age: 18 };
+			dialog.editor(editorOptions);
+		};
+
+		$scope.editItem = function(item) {
+			Users.get({ id: item.id }, function(result) {
+				editorOptions.editedItem = result;
+				dialog.editor(editorOptions);
+			});
+		};
+
+		$scope.removeItem = function(item) {
+			dialog.confirm(item.name, function() {
+				Users.remove({ id: item.id }, function() {
+					$scope.usersTable.reload();
+				});
+			});
+		};
+
 	});

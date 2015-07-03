@@ -22,12 +22,13 @@
         item-count="carCount.count"
         columns="carColumns"
         options="carOptions"
+        table-interface="carsTable"
         reload-remote-data="reloadCars"
         >
       </remote-data-table>
       <div>
-        <div><b>Selected:</b> (<span ng-bind="carOptions.publicScope.selected.length"></span>)</div>
-        <div ng-repeat="selected in carOptions.publicScope.selected">
+        <div><b>Selected:</b> (<span ng-bind="carsTable.selected.length"></span>)</div>
+        <div ng-repeat="selected in carsTable.selected">
             <span ng-bind="selected.model"></span>
         </div>
       </div>
@@ -41,10 +42,11 @@
         item-count="filmCount.count"
         columns="filmColumns"
         options="filmOptions"
+        table-interface="filmsTable"
         reload-remote-data="reloadFilms"
         >
       </remote-data-table>
-      <div><b>Selected:</b> <span ng-bind="filmOptions.publicScope.selected.title"></span></div>
+      <div><b>Selected:</b> <span ng-bind="filmsTable.selected.title"></span></div>
     </div>
   </div>
 </div>

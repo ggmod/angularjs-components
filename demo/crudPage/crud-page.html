@@ -1,16 +1,36 @@
 <div ng-controller="CrudPageCtrl">
 	<div style="margin: auto; max-width: 1000px">
-		<h2>
+		<h2 style="margin-left:5px">
 			<span class="glyphicon glyphicon-user"></span>
 			Users
 		</h2>
-		<remote-data-table 
-			items="users"
-			item-count="userCount.count"
-			columns="userTableColumns"
-			reload-remote-data="reloadUsers"
-			>
-		</remote-data-table>
+		<div class="form-inline crud-page-filter">
+			<div class="form-group" style="margin-right:10px">
+				<label>Name:</label>
+				<input type="text" ng-model="nameFilter" class="input-sm form-control" placeholder="Name"/>
+			</div>
+			<div class="form-group" style="margin-right:10px">
+				<label>Status:</label>
+				<select ng-model="statusFilter" class="form-control input-sm">
+					<option value=""> - </option>
+					<option value="true">Married</option>
+					<option value="false">Unmerried</option>
+				</select>
+			</div>
+			<a class="btn btn-sm btn-primary" ng-click="usersTable.reload()">
+				<span class="glyphicon glyphicon-search"></span>
+				Filter
+			</a>
+		</div>
+		<div class="crud-page-table">
+			<remote-data-table 
+				items="users"
+				item-count="usersCount"
+				columns="usersTableColumns"
+				table-interface="usersTable"
+				reload-remote-data="reloadUsers">
+			</remote-data-table>
+		</div>
 		<a class="btn btn-default" ng-click="newItem()">
 			<span class="glyphicon glyphicon-plus-sign"></span>
 			Add User

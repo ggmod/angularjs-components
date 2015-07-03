@@ -13,6 +13,8 @@ angular.module('commonsDemo')
 		$scope.cars = [];
 		$scope.carCount = 0;
 
+		$scope.carsTable = {};
+
 		$scope.carColumns = [{
 			property: 'year',
 			displayName: 'Year',
@@ -43,8 +45,7 @@ angular.module('commonsDemo')
 				}
 			}],
 			selectColumn: true,
-			multiSelect: true,
-			publicScope: {}
+			multiSelect: true
 		};
 
 		$scope.yearLimit = 1999;
