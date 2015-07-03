@@ -43,6 +43,7 @@
 	margin-bottom: 10px;
 }
 .crud-page-table {
+	min-height: 450px; /* to compensate for the slow loading time */
 	border: 1px solid rgb(222, 222, 222);
 	padding: 10px;
 	margin-bottom: 10px;

@@ -4,6 +4,9 @@ angular.module('commonsDemo')
 		$scope.users = [];
 		$scope.usersCount = 0;
 
+		$scope.nameFilter = '';
+		$scope.statusFilter;
+
 		$scope.usersTable = {};
 
 		$scope.usersTableColumns = [{
@@ -37,6 +40,13 @@ angular.module('commonsDemo')
 		}];
 
 		$scope.reloadUsers = function(queryParams) {
+			if ($scope.nameFilter) {
+				queryParams.name = $scope.nameFilter;
+			}
+			if ($scope.statusFilter) {
+				queryParams.married = $scope.statusFilter === 'true';
+			}
+
 			$scope.users = Users.query(queryParams);
 			$scope.usersCount = Users.count().count;
 		};
@@ -45,16 +55,19 @@ angular.module('commonsDemo')
 			scope: $scope,
 			template: 'dialog/edit-panel.html',
 			controller: 'CrudPageEditPanelCtrl',
-			editedItem: null
+			editedItem: null,
+			display: {}
 		};
 
 		$scope.newItem = function() {
+			editorOptions.display.title = 'Create User';
 			editorOptions.editedItem = { age: 18 };
 			dialog.editor(editorOptions);
 		};
 
 		$scope.editItem = function(item) {
 			Users.get({ id: item.id }, function(result) {
+				editorOptions.display.title = 'Edit User';
 				editorOptions.editedItem = result;
 				dialog.editor(editorOptions);
 			});

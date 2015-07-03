@@ -3,7 +3,22 @@ angular.module('commons')
 	// Mimics a remote resource with sorting and pagination
 	.factory('remoteResourceWrapper', function() {
 
-		return function(items) {
+		return function(spec) {
+
+			var items = spec.constructor === Array ? spec : spec.items;
+
+			function applyFilters(params, list) {
+
+				var usedFilters = spec.filters.filter(function(filter) { 
+					return params[filter.name] !== undefined; 
+				});
+
+				return items.filter(function(item) {
+					return usedFilters.every(function(filter) {
+						return filter.func(item, params[filter.name]);
+					});
+				});
+			}
 
 			return {
 				query: function(params, callback) {
@@ -13,6 +28,9 @@ angular.module('commons')
 
 					var result = items.slice(0, items.length); // to make a copy (but it is still shallow)
 					if (params) {
+						if (spec.filters) {
+							result = applyFilters(params);
+						}
 						if (params.sortBy) {
 							result.sort(function(a, b) {
 								if (typeof a[params.sortBy] === 'string') {
