@@ -1,6 +1,6 @@
 angular.module('commons')
 	
-	// Mimics a remote resource with sorting and pagination
+	// Mimics a remote resource with sorting, pagination and optional filtering
 	.factory('remoteResourceWrapper', function() {
 
 		return function(spec) {

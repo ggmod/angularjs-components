@@ -54,4 +54,37 @@
       <button class="btn btn-primary" ng-click="input2focus = !input2focus">Toggle focus</button>
     </div>
   </form>
+
+  <hr/>
+
+  <h3>Collapsibles</h3>
+
+  <div ng-controller='CollapsibleCtrl' style="width: 70%" class="collapsible-demo">
+    
+    <div class="panel panel-default">
+      <div class="panel-heading collapsible-heading" collapsible>
+          <h4 class="panel-title">Click to open/collapse</h4>
+          <span class="glyphicon collapsible-sign"></span>
+      </div>
+      <div class="panel-body collapsible-body">
+        Collepsible content
+      </div>
+    </div>
+
+    <button class="btn btn-primary" ng-click="collapsible.state = !collapsible.state" style="margin-bottom:10px">
+      Toggle collapse
+    </button>
+
+    <div class="panel panel-default">
+      <div class="panel-heading collapsible-heading" collapsible collapsed="collapsible.state">
+          <h4 class="panel-title">Click to open/collapse</h4>
+          <span class="glyphicon collapsible-sign"></span>
+      </div>
+      <div class="panel-body collapsible-body">
+        Collepsible content 2
+      </div>
+    </div>
+
+  </div>
+
 </div>

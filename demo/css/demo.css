@@ -50,3 +50,15 @@
 	margin-top: 15px;
 	border-radius: 5px;
 }
+
+.collapsible-demo .panel-heading {
+	cursor: pointer;
+}
+.collapsible-demo .collapsible-sign {
+	float: right;
+	color: gray;
+	font-size: 16px;
+}
+.collapsible-demo .panel-title {
+	display: inline-block;
+}
