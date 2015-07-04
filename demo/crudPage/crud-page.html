@@ -4,23 +4,25 @@
 			<span class="glyphicon glyphicon-user"></span>
 			Users
 		</h2>
-		<div class="form-inline crud-page-filter">
-			<div class="form-group" style="margin-right:10px">
-				<label>Name:</label>
-				<input type="text" ng-model="nameFilter" class="input-sm form-control" placeholder="Name"/>
-			</div>
-			<div class="form-group" style="margin-right:10px">
-				<label>Status:</label>
-				<select ng-model="statusFilter" class="form-control input-sm">
-					<option value=""> - </option>
-					<option value="true">Married</option>
-					<option value="false">Unmarried</option>
-				</select>
-			</div>
-			<a class="btn btn-sm btn-primary" ng-click="usersTable.reload()">
-				<span class="glyphicon glyphicon-search"></span>
-				Filter
-			</a>
+		<div class="crud-page-filter">
+			<form class="form-inline">
+				<div class="form-group" style="margin-right:10px">
+					<label>Name:</label>
+					<input type="text" ng-model="nameFilter" class="input-sm form-control" placeholder="Name" focus-me/>
+				</div>
+				<div class="form-group" style="margin-right:10px">
+					<label>Status:</label>
+					<select ng-model="statusFilter" class="form-control input-sm">
+						<option value=""> - </option>
+						<option value="true">Married</option>
+						<option value="false">Unmarried</option>
+					</select>
+				</div>
+				<button class="btn btn-sm btn-primary" ng-click="usersTable.reload()">
+					<span class="glyphicon glyphicon-search"></span>
+					Filter
+				</button>
+			</form>
 		</div>
 		<div class="crud-page-table">
 			<remote-data-table 

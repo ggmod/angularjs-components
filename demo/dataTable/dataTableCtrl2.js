@@ -56,7 +56,7 @@ angular.module('commonsDemo')
 
 		$scope.reloadCars = function(params) {
 			$scope.cars = Cars.query(params);
+			$scope.carCount = Cars.count().count;
 		};
 
-		$scope.carCount = Cars.count();
 	});

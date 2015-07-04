@@ -54,7 +54,7 @@ angular.module('commonsDemo')
 
 		$scope.reloadFilms = function(params) {
 			$scope.films = Films.query(params);
+			$scope.filmCount = Films.count().count;
 		};
 
-		$scope.filmCount = Films.count();
 	});

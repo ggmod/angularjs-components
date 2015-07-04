@@ -50,8 +50,7 @@ angular.module('commonsDemo')
 
 		$scope.reloadTasks = function(params) {
 			$scope.tasks = Tasks.query(params);
+			$scope.taskCount = Tasks.count().count;
 		};
-
-		$scope.taskCount = Tasks.count();
 
 	});

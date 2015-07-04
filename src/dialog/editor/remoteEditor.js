@@ -22,7 +22,7 @@ angular.module('commons')
 
 		editDialog.copyHandler = function(closeCallback) {
 			delete $scope.editedItem[editDialog.idProperty];
-			editDialog.saveHandler(closeCallback);
+			editDialog.createHandler(closeCallback);
 		};
 
 		editDialog.cancelHandler = function() { };

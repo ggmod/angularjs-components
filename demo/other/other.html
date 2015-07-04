@@ -1,4 +1,7 @@
 <div style="padding: 15px">
+
+  <h3>Tabs</h3>
+
   <div ng-controller="TabsCtrl">   		
     <tab-container selected="tabs1.selectedTab">
       <tab-headers>
@@ -37,4 +40,18 @@
       </tab-panes>
     </tab-container>
   </div>
+
+  <hr/>
+
+  <h3>Auto focus</h3>
+
+  <form class="form-inline">
+    <div style="margin-bottom:10px">
+      <input type="text" class="form-control" placeholder="auto focus this" focus-me/>
+    </div>
+    <div>
+      <input type="text" class="form-control" placeholder="focus by pressing button" focus-me="input2focus"/>
+      <button class="btn btn-primary" ng-click="input2focus = !input2focus">Toggle focus</button>
+    </div>
+  </form>
 </div>
