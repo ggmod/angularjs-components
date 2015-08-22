@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 				separator: '\n\n'
 			},
 			scripts: {
-				src: ['src/commons-module.js', 'src/**/*.js'],
+				src: ['src/module.js', 'src/**/*.js'],
 				dest: 'build/angular-commons.js'
 			},
 			sassStyles: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 				dest: 'build/.tmp/angular-commons.scss'
 			},
 			demoScripts: {
-				src: ['demo/demo-module.js', 'demo/**/*.js'],
+				src: ['demo/module.js', 'demo/**/*.js'],
 				dest: 'build/angular-commons-demo.js'
 			}
 		},

@@ -5,7 +5,7 @@ angular.module('commonsDemo')
 		$scope.usersCount = 0;
 
 		$scope.nameFilter = '';
-		$scope.statusFilter;
+		$scope.statusFilter = undefined;
 
 		$scope.usersTable = {};
 

@@ -1,5 +1,5 @@
 angular.module('commons')
-	.directive('dialog', function($document) {
+	.directive('dialog', function($document, dialogStack) {
 		return {
 			scope: {
 				visible: '=',
@@ -68,12 +68,16 @@ angular.module('commons')
 
 				scope.$watch('visible', function() {
 					if (scope.visible) {
+						dialogStack.push(element);
 						handleScrollbarAtOpen();
 						document.body.classList.add('modal-open');
 						$document.on('keydown', escHandler);
 					} else {
+						dialogStack.splice(dialogStack.indexOf(element), 1);
 						handleScrollbarAtClose();
-						document.body.classList.remove('modal-open');
+						if (dialogStack.length === 0) {
+							document.body.classList.remove('modal-open');
+						}
 						$document.off('keydown', escHandler);
 					}
 				});
@@ -89,7 +93,8 @@ angular.module('commons')
 				};
 
 				function escHandler(event) {
-					if (event.keyCode === 27 && scope.closeByEsc) {
+					if (event.keyCode === 27 && scope.closeByEsc && 
+						dialogStack[dialogStack.length - 1] === element) {
 						scope.close();
 						scope.$apply();
 					}

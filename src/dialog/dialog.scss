@@ -19,3 +19,8 @@ abbr.required {
 	font-size: 14px;
 	border-bottom: none;
 }
+
+// bootstrap override for overlapping modal dialogs:
+.modal-backdrop {
+	z-index: 1050;
+}
