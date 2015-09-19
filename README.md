@@ -1,6 +1,6 @@
-Angular components
-==================
+AngularJS components
+====================
 
-Some commonly needed components for angular webapps.
+Some commonly needed components for AngularJS webapps (dialogs, data tables, panels)
 
-For a showcase open "demo/index.html" from a server after building the project.
+For a showcase build the project and check "demo/index.html" (must be opened from a server to allow XHR requests)
